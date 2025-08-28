@@ -9,7 +9,7 @@ local UI = Library.Async --// Shortened
 local Window = nil
 
 function Library:Setup()
-	local version = LRM_ScriptVersion and "v" .. table.concat(LRM_ScriptVersion:split(""), ".") or "Premium Version"
+	local version = LRM_ScriptVersion and "v" .. table.concat(LRM_ScriptVersion:split(""), ".") or "Premium Version"	
 	Window = UI:CreateWindow({
 		Title = "DYHUB",
 		Icon = "rbxassetid://104487529937663",
@@ -32,6 +32,15 @@ function Library:Setup()
 			end,
 		},
 	})
+
+	Window:EditOpenButton({
+    Title = "DYHUB - Open",
+    Icon = "monitor",
+    CornerRadius = UDim.new(0, 6),
+    StrokeThickness = 2,
+    Color = ColorSequence.new(Color3.fromRGB(30, 30, 30), Color3.fromRGB(255, 255, 255)),
+    Draggable = true,
+})
 
 	return Window
 end
