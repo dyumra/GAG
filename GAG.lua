@@ -57,9 +57,9 @@
 -- -- local Import = getgenv().Import
 
 -- Load Modules
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/hajibeza/Module/refs/heads/main/GAG_Lib.lua"))()
-local Utility = loadstring(game:HttpGet("https://raw.githubusercontent.com/hajibeza/Module/refs/heads/main/GAG_Utility.lua"))()
-local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/hajibeza/Module/refs/heads/main/GAG_Module.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/dyumra/GAG/refs/heads/main/GAG_Lib.lua"))()
+local Utility = loadstring(game:HttpGet("https://raw.githubusercontent.com/dyumra/GAG/refs/heads/main/GAG_Utility.lua"))()
+local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/dyumra/GAG/refs/heads/main/GAG_Module.lua"))()
 
 local Collection = {
 	["Auto Harvest"] = {
@@ -145,7 +145,7 @@ local Mouse = Utility.Mouse
 --// Setup
 local Window = Library:Setup()
 
-local AboutUs = Library:CreateTab("About us | Server Hop", "info")
+local AboutUs = Library:CreateTab("Information", "info")
 local Farming = Library:CreateTab("Farming", "wheat")
 local Stock = Library:CreateTab("Stock", "store")
 local Player = Library:CreateTab("Player", "user")
@@ -2642,7 +2642,8 @@ Module:Init(function() --// Auto Craft Event Items
 end)
 
 Module:Init(function() --// Exit //--
-	Module:SendNotification('<font color="rgb(173,216,230)">Thanks for using Phantom Flux!</font>')
+	Module:SendNotification('<font color="rgb(173,216,230)">Thanks for using DYHUB!</font>')
 	Module:SendNotification('<font color="rgb(173,216,230)">Join Our Discord For More Updates</font>')
 	Module:SendNotification('<font color="rgb(173,216,230)">Scripted by severitysvc :heart: </font>')
 end)
+
