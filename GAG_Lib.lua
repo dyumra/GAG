@@ -1,4 +1,4 @@
---// Note: This is WindUI, not a custom gui library by phantom flux.
+--// Note: This is WindUI, not a custom gui library by DYHUB™
 
 local Library = {}
 Library.__index = Library
@@ -9,12 +9,12 @@ local UI = Library.Async --// Shortened
 local Window = nil
 
 function Library:Setup()
-	local version = LRM_ScriptVersion and "v" .. table.concat(LRM_ScriptVersion:split(""), ".") or "Dev Version"
+	local version = LRM_ScriptVersion and "v" .. table.concat(LRM_ScriptVersion:split(""), ".") or "Premium Version"
 	Window = UI:CreateWindow({
-		Title = "Phantom Flux",
-		Icon = "rbxassetid://128278170341835",
+		Title = "DYHUB",
+		Icon = "rbxassetid://104487529937663",
 		Author = (premium and "Premium" or " Grow a Graden") .. " | " .. version,
-		Folder = "PhantomFlux",
+		Folder = "DYHUB-GAG",
 		Size = UDim2.fromOffset(580, 460),
 		Transparent = true,
 		Theme = "Dark",
@@ -118,7 +118,7 @@ function Library:SetupAboutUs(AboutUs)
 		Title = "Discord Link (Click to Copy)",
 		Icon = "link",
 		Callback = function()
-			setclipboard("discord.gg/PhantomFlux")
+			setclipboard("dsc.gg/dyhub")
 			Library:Notify({ Title = "Copied!", Content = "Discord link copied!", Duration = 3 })
 		end,
 	})
