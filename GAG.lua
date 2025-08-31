@@ -1,3 +1,5 @@
+-------------- 22222222222222222
+
 
 --// Init
 -- local Mode = "Web"
@@ -1331,6 +1333,125 @@ Module:Init(function() --// Seed Spawner: Creds Sudais
 end)
 
 --// Event
+Module:Init(function()
+    Library:CreateSection(Event, "Fairy Event")
+
+    local ConnectionInit = Module:SpawnConnection()
+    local Connection = nil
+    local LastTick = 0
+    local Delay12 = 1
+    local Item2_Event = {}
+
+    Library:CreateDropdown(Event, { 
+        Title = "Upgrade Event",
+        Values = { "Glimmer Multiplier", "Loose Fairy Spawn Amount", "Fairy Event Duration", "Fairy Spawn Amount" },
+        Value = {},
+        Multi = true,
+        AllowNone = true,
+        Callback = function(option1)
+            Item2_Event = option1
+        end,
+    })
+
+    Event:Toggle({
+        Title = "Auto Buy Fairy Upgrade",
+        Desc = "Automatically Upgrade Fairy Event",
+        Icon = "check",
+        Type = "Checkbox",
+        Default = false,
+        Callback = function(State)
+            if State then
+                if Connection then
+                    ConnectionInit:Disconnect(Connection)
+                    Connection = nil
+                end
+
+                Connection = ConnectionInit:Connect("Heartbeat", function()
+                    local Current = tick()
+                    if Current - LastTick >= Delay12 then
+                        LastTick = Current
+                        if #Item2_Event > 0 then
+                            local args = Item2_Event
+                            game:GetService("ReplicatedStorage")
+                                :WaitForChild("GameEvents")
+                                :WaitForChild("FairyService")
+                                :WaitForChild("Upgrade")
+                                :FireServer(unpack(args))
+                        end
+                    end
+                end)
+            else
+                if Connection then
+                    ConnectionInit:Disconnect(Connection)
+                    Connection = nil
+                end
+            end
+        end,
+    })
+
+	Event:Toggle({
+		Title = "Auto Submit Fairy Event",
+		Desc = "Automatically Submit Ur Plants",
+		Icon = "check",
+		Type = "Checkbox",
+		Default = false,
+		Callback = function(State)
+			if State == true then
+				ConnectionInit:Disconnect(Connection)
+
+				Connection = ConnectionInit:Connect("Heartbeat", function()
+					local Current = tick()
+					if Current - LastTick < 1 then
+						return
+					end
+					LastTick = Current
+					-- game:GetService("ReplicatedStorage").Modules.UpdateService.Parent = workspace
+					Utility.GameEvents:WaitForChild("FairyService"):WaitForChild("SubmitFairyFountainAllPlants"):FireServer()
+                    Utility.GameEvents:WaitForChild("FairyService"):WaitForChild("SubmitAllPlants"):FireServer()
+                    Utility.GameEvents:WaitForChild("FairyService"):WaitForChild("SubmitHeldPlant"):FireServer()
+					Utility.GameEvents:WaitForChild("FairyService"):WaitForChild("SubmitFairyFountainHeldPlant"):FireServer()
+				end)
+			else
+				if Connection then
+					ConnectionInit:Disconnect(Connection)
+					Connection = nil
+				end
+			end
+		end,
+	})
+
+	Event:Toggle({
+		Title = "Auto Claim Reward Fairy Event",
+		Desc = "Automatically Claim Reward Fairy Event",
+		Icon = "check",
+		Type = "Checkbox",
+		Default = false,
+		Callback = function(State)
+			if State == true then
+				ConnectionInit:Disconnect(Connection)
+
+				Connection = ConnectionInit:Connect("Heartbeat", function()
+					local Current = tick()
+					if Current - LastTick < 1 then
+						return
+					end
+					LastTick = Current
+					-- game:GetService("ReplicatedStorage").Modules.UpdateService.Parent = workspace
+					-- Utility.GameEvents:WaitForChild("BeanstalkRESubmitAllPlant"):FireServer()
+					Utility.GameEvents:WaitForChild("ClaimFairyReward"):FireServer()
+					-- Utility.GameEvents:WaitForChild("BeanstalkRESubmitHeldPlant"):FireServer()
+				end)
+			else
+				if Connection then
+					ConnectionInit:Disconnect(Connection)
+					Connection = nil
+				end
+			end
+		end,
+	})
+end)
+
+-------------------------------------------------------------------------------
 
 Module:Init(function()
 	Library:CreateSection(Event, "Beanstalk Event")
@@ -2646,4 +2767,5 @@ Module:Init(function() --// Exit //--
 	Module:SendNotification('<font color="rgb(173,216,230)">Join Our Discord For More Updates</font>')
 	Module:SendNotification('<font color="rgb(173,216,230)">Scripted by severitysvc :heart: </font>')
 end)
+
 
